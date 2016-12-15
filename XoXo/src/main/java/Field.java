@@ -1,6 +1,6 @@
 
 public class Field {
-    private static int count = 0;
+    public static int count = 0;
     private char field1;
     private char field2;
     private char field3;
@@ -11,10 +11,11 @@ public class Field {
     private char field8;
     private char field9;
 
-    public static void addCount(){
+    public static void addCount() {
         count++;
     }
-    public static int getCount(){
+
+    public static int getCount() {
         return count;
     }
 
@@ -127,5 +128,39 @@ public class Field {
         System.out.println("                8                ");
 
 
+    }
+
+    public char getAnyField(int num) {
+        char result = ' ';
+        switch (num) {
+            case 1:
+                result = getField1();
+                break;
+            case 2:
+                result = getField2();
+                break;
+            case 3:
+                result = getField3();
+                break;
+            case 4:
+                result = getField4();
+                break;
+            case 5:
+                result = getField5();
+                break;
+            case 6:
+                result = getField6();
+                break;
+            case 7:
+                result = getField7();
+                break;
+            case 8:
+                result = getField8();
+                break;
+            case 9:
+                result = getField9();
+                break;
+        }
+        return result;
     }
 }

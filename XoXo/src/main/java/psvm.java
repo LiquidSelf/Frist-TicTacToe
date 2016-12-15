@@ -32,7 +32,7 @@ public class psvm {
     }
 
 
-    private static char whosTurn(Field game) {
+    public static char whosTurn(Field game) {
         char w = 'w';
         int q = game.getCount();
         if (q % 2 == 1) {
