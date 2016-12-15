@@ -1,6 +1,6 @@
 
 public class Field {
-    private static int count = 1;
+    private static int count = 0;
     private char field1;
     private char field2;
     private char field3;
@@ -101,30 +101,30 @@ public class Field {
         char s7 = getField7();
         char s8 = getField8();
         char s9 = getField9();
-        System.out.println("                2              ");
+        System.out.println("                2                ");
         System.out.println
-                ("1           |       |         3");
+                ("1           |       |           3");
         System.out.println
-                ("      " + s1 + "     |   " + s2 + "   |    " + s3 + "      ");
+                ("      " + s1 + "     |   " + s2 + "   |    " + s3 + "        ");
         System.out.println
-                ("            |       |          ");
+                ("            |       |            ");
         System.out.println
-                ("     —         --         —     ");
+                ("     —         --         —       ");
         System.out.println
-                ("            |       |          ");
+                ("            |       |            ");
         System.out.println
-                ("4     " + s4 + "     |   " + s5 + "   |    " + s6 + "    6");
+                ("4     " + s4 + "     |   " + s5 + "   |    " + s6 + "      6");
         System.out.println
-                ("            |       |          ");
+                ("            |       |            ");
         System.out.println
-                ("     —         --         —     ");
+                ("     —         --         —       ");
         System.out.println
-                ("            |       |          ");
+                ("            |       |            ");
         System.out.println
-                ("      " + s7 + "     |   " + s8 + "   |    " + s9 + "     ");
+                ("      " + s7 + "     |   " + s8 + "   |    " + s9 + "       ");
         System.out.println
-                ("7           |       |         9");
-        System.out.println("                8              ");
+                ("7           |       |           9");
+        System.out.println("                8                ");
 
 
     }

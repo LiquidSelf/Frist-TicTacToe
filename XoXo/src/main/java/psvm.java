@@ -21,7 +21,7 @@ public class psvm {
 
             if (WinOrLose.winOrLose(game)) {
                 game.showField();
-                System.out.println(+whosTurn(game) + " победил, gg wp.");
+                System.out.print(whosTurn(game) + " победил, gg wp.");
                 break;
 
             }
