@@ -1,6 +1,6 @@
 
 public class Field {
-
+    private static int count = 1;
     private char field1;
     private char field2;
     private char field3;
@@ -10,6 +10,13 @@ public class Field {
     private char field7;
     private char field8;
     private char field9;
+
+    public static void addCount(){
+        count++;
+    }
+    public static int getCount(){
+        return count;
+    }
 
 
     public char getField1() {
@@ -94,28 +101,30 @@ public class Field {
         char s7 = getField7();
         char s8 = getField8();
         char s9 = getField9();
+        System.out.println("                2              ");
         System.out.println
-                ("          |       |        ");
+                ("1           |       |         3");
         System.out.println
-                ("    " + s1 + "     |   " + s2 + "   |    " + s3 + "    ");
+                ("      " + s1 + "     |   " + s2 + "   |    " + s3 + "      ");
         System.out.println
-                ("          |       |        ");
+                ("            |       |          ");
         System.out.println
-                ("   —         --         —   ");
+                ("     —         --         —     ");
         System.out.println
-                ("          |       |        ");
+                ("            |       |          ");
         System.out.println
-                ("    " + s4 + "     |   " + s5 + "   |    " + s6 + "   ");
+                ("4     " + s4 + "     |   " + s5 + "   |    " + s6 + "    6");
         System.out.println
-                ("          |       |        ");
+                ("            |       |          ");
         System.out.println
-                ("   —         --         —   ");
+                ("     —         --         —     ");
         System.out.println
-                ("          |       |        ");
+                ("            |       |          ");
         System.out.println
-                ("    " + s7 + "     |   " + s8 + "   |    " + s9 + "   ");
+                ("      " + s7 + "     |   " + s8 + "   |    " + s9 + "     ");
         System.out.println
-                ("          |       |        ");
+                ("7           |       |         9");
+        System.out.println("                8              ");
 
 
     }

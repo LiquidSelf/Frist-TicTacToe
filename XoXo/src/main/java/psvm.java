@@ -1,19 +1,45 @@
+import java.util.Scanner;
+
 public class psvm {
 
     public static void main(String[] args) {
+        Guide.showGuide();
+        Field game = SetField.setEmptyField(new Field());
+        Scanner scan = new Scanner(System.in);
 
-        System.out.println("Крестики ходят первыми. (введите поле 1-9)");
-        Field field = SetField.numeredField(new Field());
-        field.showField();
-        for (;WinOrLose.winOrLose(field);){
-            field.setField1('x');
-            field.setField5('o');
-            field.setField9('x');
-            System.out.println("lol");
+        for (; ; game.addCount()) {
+            System.out.println("Ходит " + whosTurn(game) + "! (число 1-9)");
+            game.showField();
 
+            int target = scan.nextInt();
+
+            if (target < 10 && target > 0) {
+                if (whosTurn(game) == 'X') {
+                    SetXorO.setX(game, target);
+                } else SetXorO.setO(game, target);
+            } else System.out.println("число вне диапазона");
+
+            if (WinOrLose.winOrLose(game)) {
+                game.showField();
+                System.out.println(+whosTurn(game) + " победил, gg wp.");
+                break;
+
+            }
 
         }
 
 
     }
+
+
+    private static char whosTurn(Field game) {
+        char w = 'w';
+        int q = game.getCount();
+        if (q % 2 == 1) {
+            w = 'O';
+        } else w = 'X';
+        return w;
+    }
+
+
 }
