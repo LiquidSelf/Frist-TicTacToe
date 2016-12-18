@@ -1,3 +1,5 @@
+package MainApp;
+
 public class SetXorO {
 
     public static void setX(Field field, int num) {

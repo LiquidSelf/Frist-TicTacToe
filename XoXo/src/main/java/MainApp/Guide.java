@@ -1,3 +1,5 @@
+package MainApp;
+
 import java.util.Scanner;
 
 public class Guide {

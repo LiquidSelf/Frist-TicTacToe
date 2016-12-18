@@ -1,3 +1,5 @@
+package MainApp;
+
 public class WinOrLose {
 
     public static boolean winOrLose(Field field) {
