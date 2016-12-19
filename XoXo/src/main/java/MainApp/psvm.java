@@ -9,21 +9,21 @@ public class psvm {
         Field game = SetField.setEmptyField(new Field());
         Scanner scan = new Scanner(System.in);
 
-        for (; ; game.addCount()) {
-            System.out.println("Ходит " + whosTurn(game) + "! (число 1-9)");
+        for (; ; Field.addCount()) {
+            System.out.println("Ходит " + whosTurn() + "! (число 1-9)");
             game.showField();
 
             int target = scan.nextInt();
 
             if (target < 10 && target > 0) {
-                if (whosTurn(game) == 'X') {
+                if (whosTurn() == 'X') {
                     SetXorO.setX(game, target);
                 } else SetXorO.setO(game, target);
             } else System.out.println("число вне диапазона");
 
             if (WinOrLose.winOrLose(game)) {
                 game.showField();
-                System.out.print(whosTurn(game) + " победил, gg wp.");
+                System.out.print(whosTurn() + " победил, gg wp.");
                 break;
 
             }
@@ -34,9 +34,9 @@ public class psvm {
     }
 
 
-    public static char whosTurn(Field game) {
-        char w = 'w';
-        int q = game.getCount();
+    private static char whosTurn() {
+        char w;
+        int q = Field.getCount();
         if (q % 2 == 1) {
             w = 'O';
         } else w = 'X';

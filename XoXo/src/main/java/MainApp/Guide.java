@@ -15,8 +15,6 @@ public class Guide {
     public static void showGuide(){
         /** Вводная часть:*/
         Scanner scan = new Scanner(System.in);
-
-
         System.out.println("КрестикиНолики.\nДля игры вводите цифры, соответствующие отметкам у поля.");
         Field field = SetField.setEmptyField(new Field());
         field.showField();
@@ -30,4 +28,5 @@ public class Guide {
 
 
     }
+
 }
