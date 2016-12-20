@@ -1,4 +1,6 @@
-public class poriadokVipolneniya {
+package mylittleplays;
+
+public class PoriadokVipolneniya {
 
     public static void main(String[] args) {
         System.err.println("#1.in");

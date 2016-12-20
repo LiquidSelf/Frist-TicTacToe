@@ -1,6 +1,8 @@
+package mylittleplays;
+
 import java.util.Date;
 
-public class date {
+public class DateTest {
     public static void main(String[] args) {
         long q = System.currentTimeMillis();
         String str1 = "У кота ";

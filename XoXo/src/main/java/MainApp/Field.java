@@ -1,4 +1,4 @@
-package MainApp;
+package mainapp;
 
 public class Field {
     public static int count = 0;
