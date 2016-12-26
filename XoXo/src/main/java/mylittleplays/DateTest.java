@@ -11,7 +11,7 @@ public class DateTest {
         StringBuffer sb = new StringBuffer(20);
         sb.append(str1).append(paws).append(str2);
         System.out.println(sb.toString());
-        for (int e = 1; e<30000;e++){
+        for (int e = 1; e<300000;e++){
             System.out.println(e);
         }
 
