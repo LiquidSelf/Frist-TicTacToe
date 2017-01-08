@@ -164,4 +164,14 @@ public class Field {
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        String stringRes =
+                (""+getField1() + getField2() + getField3() +
+                getField4() + getField5() + getField6() +
+                getField7() + getField8() + getField9());
+        return stringRes;
+
+    }
 }
