@@ -1,11 +1,11 @@
-package mainapp;
+package mylittleplaystest;
 
 import mylittleplays.MoneyInLong;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class moneyInLongTest {
+public class MoneyInLongTest {
     MoneyInLong c = new MoneyInLong();
     @Test(expected = Exception.class)
 
