@@ -17,8 +17,7 @@ public class SetField {
         return field;
     }
 
-    public static Field setNumeredField(Field field){
-
+    public static Field setNumeredField(Field field) {
         field.setField1('1');
         field.setField2('2');
         field.setField3('3');

@@ -5,22 +5,22 @@ import java.util.Scanner;
 public class Guide {
 
     public static String neveroyatniy;
-    public static void isNeveroyatniy(){
-        if (neveroyatniy.contains("евероят")){
+
+    public static void isNeveroyatniy() {
+        if (neveroyatniy.contains("евероят")) {
             System.out.println("Спасибо, Вы тоже! ^^");
         }
 
     }
 
-    public static void showGuide(){
+    public static void showGuide() {
         /** Вводная часть:*/
         Scanner scan = new Scanner(System.in);
         System.out.println("КрестикиНолики.\nДля игры вводите цифры, соответствующие отметкам у поля.");
         Field guide = SetField.setEmptyField(new Field());
         guide.showField();
         System.out.println("\n (включите скролл консоли)");
-        System.out.println("Напечатайте, " +
-                "'невероятный', чтобы продолжить!");
+        System.out.println("Напечатайте, " + "'невероятный', чтобы продолжить!");
         String q = scan.nextLine();
         neveroyatniy = q;
         System.out.println("\n\n\n\n\n\n\n\n\n\n");

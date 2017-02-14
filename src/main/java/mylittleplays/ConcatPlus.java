@@ -87,8 +87,7 @@ class ConcatPlus {
     /**
      * StringBuilder
      */
-    public static void readStringBuilder(File file) throws IOException
-    {
+    public static void readStringBuilder(File file) throws IOException {
         long g = System.currentTimeMillis();
         BufferedReader reader = null;
 
@@ -97,8 +96,7 @@ class ConcatPlus {
         StringBuilder wholeText = new StringBuilder();
         String line;
 
-        while ((line = reader.readLine()) != null)
-        {
+        while ((line = reader.readLine()) != null) {
             System.out.println(line);
             wholeText.append(line);
         }

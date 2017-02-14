@@ -2,25 +2,34 @@ package mylittleplays;
 
 public class MoneyInLong {
     public static void main(String[] args) {
-        MoneyInLong r = new MoneyInLong();
-        System.out.println("осталось " + r.getRubasy(100, 49.95));
 
+        final long vsego = 422000;
+        final long sniatRub = 1200;
+        final long sniatKopek = 99;
+        final MoneyInLong r = new MoneyInLong();
+        System.out.print("У Вас было " + vsego + " рублей");
+        System.out.println(", Вы сняли " + sniatRub + " рублей, " + sniatKopek + " копеек.");
+        System.out.println("На счету осталось " + r.getRubasy(vsego, sniatRub, sniatKopek)[0] + " рублей " + r.getRubasy(vsego, sniatRub, sniatKopek)[1] + " копеек.");
+    }
+
+
+    public int div(final int q, final int e) {
+        return q / e;
 
     }
-    public int div (int q, int e) {
-        return q/e;
 
-    }
-
-    private double getRubasy(long vsego, double sniat) {
+    private long[] getRubasy(final long vsego, final long sniatRub, final long sniatKopek) {
         assert vsego > 0;
-        assert sniat > 0;
-        long kopek = vsego * 100;
-        System.out.print("Было " + kopek / 100);
-        long kope2 = (long) (sniat * 100);
-        System.out.println(", Вы сняли " + sniat);
+        assert sniatRub > 0;
+        final long vKopeykah = 100;
+        long[] result = new long[2];
+        result[0] = (vsego * vKopeykah - (sniatRub * vKopeykah)) / vKopeykah;
 
-        return ((double) (kopek - kope2)) / 100;
+        if (sniatKopek > 0) {
+            --result[0];
+        }
+        result[1] = vKopeykah - sniatKopek;
+        return result;
 
     }
 }

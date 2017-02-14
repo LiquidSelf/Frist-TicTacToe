@@ -10,7 +10,7 @@ public class psvm {
         Scanner scan = new Scanner(System.in);
 
 
-        for (; ; Field.addCount()) {
+        for (;; Field.addCount()) {
             System.out.println("Ходит " + GameStatus.whosTurn() + "! (число 1-9)");
             game.showField();
 
@@ -21,7 +21,6 @@ public class psvm {
                     SetXorO.setX(game, target);
                 } else SetXorO.setO(game, target);
             } else System.out.println("число вне диапазона");
-
 
 
             switch (GameStatus.isEnd(game)) {
@@ -39,7 +38,6 @@ public class psvm {
             }
         }
     }
-
 
 
 }
