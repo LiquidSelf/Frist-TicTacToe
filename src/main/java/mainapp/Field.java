@@ -2,6 +2,7 @@ package mainapp;
 
 public class Field {
     public static int count = 0;
+
     private char field1;
     private char field2;
     private char field3;

@@ -17,6 +17,7 @@ public class MoneyInLongTest {
     }
     @Test
     public void testDiv2(){
+
         assertTrue(c.div(30,15)==2);
 
     }
@@ -31,6 +32,8 @@ public class MoneyInLongTest {
     public void testGetRubasy2(){
 
         assertTrue(c.getRubasy(500, 500, 0)[0] == 0);
+
+        assertTrue(c.getRubasy(500, 499, 5)[0] == 0);
 
         assertTrue(c.getRubasy(500, 499, 5)[0] == 0);
     }

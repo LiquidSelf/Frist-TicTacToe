@@ -1,35 +1,45 @@
 package mainapp;
 
-import java.util.Scanner;
-
 public class psvm {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Guide.showGuide();
 
         Field game = SetField.setEmptyField(new Field());
 
-        Scanner scan = new Scanner(System.in);
+        int target = 0;
 
+        for (;; Field.addCount()) {
 
-        for (; ; Field.addCount()) {
-
-            System.out.println("Ходит " + GameStatus.whosTurn() + "! (число 1-9)");
+            System.out.println("Ходит " + GameStatus.whosTurn() + "!");
 
             game.showField();
 
-            int target = scan.nextInt();
+            target = Guide.move(game);
 
             if (target < 10 && target > 0) {
 
                 if (GameStatus.whosTurn() == 'X') {
 
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n");
+
                     SetXorO.setX(game, target);
 
-                } else SetXorO.setO(game, target);
+                } else {
 
-            } else System.out.println("число вне диапазона");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n");
+
+                    SetXorO.setO(game, target);
+
+                  }
+
+            } else {
+
+                System.out.println("\n\n\n\n\n\n\n\n\n\n");
+
+                System.out.println("число от 1 до 9!");
+              }
 
 
             switch (GameStatus.isEnd(game)) {
@@ -53,6 +63,7 @@ public class psvm {
                     System.exit(322);
 
                     break;
+
 
             }
         }

@@ -1,5 +1,6 @@
 package mainapp;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Guide {
@@ -42,4 +43,31 @@ public class Guide {
 
     }
 
+    public static int move(final Field game) throws InputMismatchException {
+
+        int q = 0;
+
+        Scanner scan = new Scanner(System.in);
+
+        for (; ; ) {
+
+            try {
+
+                q = scan.nextInt();
+
+            } catch (InputMismatchException wronginput) {
+
+                System.out.println("только цифры!");
+
+                Field.count--;
+
+            }
+
+
+            game.showField();
+
+            return q;
+
+        }
+    }
 }

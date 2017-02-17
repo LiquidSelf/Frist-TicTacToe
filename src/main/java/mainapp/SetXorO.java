@@ -3,6 +3,8 @@ package mainapp;
 public class SetXorO {
 
     public static void setX(Field field, int num) {
+
+
         if (field.getAnyField(num) == ' ') {
             switch (num) {
                 case 1:
@@ -36,8 +38,13 @@ public class SetXorO {
 
 
         } else {
+
             --Field.count;
+
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+
             System.out.println("поле занято!");
+
         }
     }
 
@@ -75,7 +82,9 @@ public class SetXorO {
             }
 
         } else {
+
             --Field.count;
+
             System.out.println("поле занято!");
         }
     }
