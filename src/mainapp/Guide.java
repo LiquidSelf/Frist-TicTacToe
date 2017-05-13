@@ -1,9 +1,8 @@
 package mainapp;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Guide {
+class Guide {
 
     public static String neveroyatniy;
 
@@ -16,7 +15,7 @@ public class Guide {
 
     }
 
-    public static void showGuide() {
+    static void showGuide() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -24,7 +23,7 @@ public class Guide {
 
         System.out.println("Для игры вводите цифры, соответствующие отметкам у поля.");
 
-        Field guide = SetField.setEmptyField(new Field());
+        Field guide = Field.setEmptyField(new Field());
 
         guide.showField();
 
@@ -32,42 +31,13 @@ public class Guide {
 
         System.out.println("Напечатайте, " + "'невероятный', чтобы продолжить!");
 
-        String q = scan.nextLine();
-
-        neveroyatniy = q;
+        neveroyatniy = scan.nextLine();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
         isNeveroyatniy();
 
-
     }
 
-    public static int move(final Field game) throws InputMismatchException {
 
-        int q = 0;
-
-        Scanner scan = new Scanner(System.in);
-
-        for (; ; ) {
-
-            try {
-
-                q = scan.nextInt();
-
-            } catch (InputMismatchException wronginput) {
-
-                System.out.println("только цифры!");
-
-                Field.count--;
-
-            }
-
-
-            game.showField();
-
-            return q;
-
-        }
-    }
 }

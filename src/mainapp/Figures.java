@@ -1,91 +1,98 @@
 package mainapp;
 
-public class SetXorO {
+public class Figures {
 
-    public static void setX(Field field, int num) {
+    public static Field setX(Field game, int num, GameStatus status) {
 
 
-        if (field.getAnyField(num) == ' ') {
+        if (game.getAnyField(num) == ' ') {
             switch (num) {
                 case 1:
-                    field.setField1('X');
+                    game.setField1('X');
                     break;
                 case 2:
-                    field.setField2('X');
+                    game.setField2('X');
                     break;
                 case 3:
-                    field.setField3('X');
+                    game.setField3('X');
                     break;
                 case 4:
-                    field.setField4('X');
+                    game.setField4('X');
                     break;
                 case 5:
-                    field.setField5('X');
+                    game.setField5('X');
                     break;
                 case 6:
-                    field.setField6('X');
+                    game.setField6('X');
                     break;
                 case 7:
-                    field.setField7('X');
+                    game.setField7('X');
                     break;
                 case 8:
-                    field.setField8('X');
+                    game.setField8('X');
                     break;
                 case 9:
-                    field.setField9('X');
+                    game.setField9('X');
                     break;
             }
 
 
         } else {
 
-            --Field.count;
+            status.backStep();
 
             System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
             System.out.println("поле занято!");
 
         }
+
+        return game;
     }
 
 
-    public static void setO(Field field, int num) {
-        if (field.getAnyField(num) == ' ') {
+    public static Field setO(Field game, int num, GameStatus status) {
+        if (game.getAnyField(num) == ' ') {
             switch (num) {
                 case 1:
-                    field.setField1('O');
+                    game.setField1('O');
                     break;
                 case 2:
-                    field.setField2('O');
+                    game.setField2('O');
                     break;
                 case 3:
-                    field.setField3('O');
+                    game.setField3('O');
                     break;
                 case 4:
-                    field.setField4('O');
+                    game.setField4('O');
                     break;
                 case 5:
-                    field.setField5('O');
+                    game.setField5('O');
                     break;
                 case 6:
-                    field.setField6('O');
+                    game.setField6('O');
                     break;
                 case 7:
-                    field.setField7('O');
+                    game.setField7('O');
                     break;
                 case 8:
-                    field.setField8('O');
+                    game.setField8('O');
                     break;
                 case 9:
-                    field.setField9('O');
+                    game.setField9('O');
                     break;
             }
 
         } else {
 
-            --Field.count;
+            status.backStep();
+
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
             System.out.println("поле занято!");
         }
+
+
+        return game;
     }
 }
