@@ -17,9 +17,29 @@ public class Controller {
 
     private Field game = Field.setEmptyField(new Field());
     private FxGameStatus fxGameStatus = new FxGameStatus();
-    List<Image> setX = new LinkedList<Image>();
-    List<Image> setO = new LinkedList<Image>();
-    Random r = new Random(System.currentTimeMillis());
+    private List<Image> setX = new LinkedList<Image>();
+    private List<Image> setO = new LinkedList<Image>();
+    private Random r = new Random(System.currentTimeMillis());
+    private FXPsvm fxPsvm;
+
+    @FXML
+    private ImageView img1;
+    @FXML
+    private ImageView img2;
+    @FXML
+    private ImageView img3;
+    @FXML
+    private ImageView img4;
+    @FXML
+    private ImageView img5;
+    @FXML
+    private ImageView img6;
+    @FXML
+    private ImageView img7;
+    @FXML
+    private ImageView img8;
+    @FXML
+    private ImageView img9;
 
     @FXML
     private void click(Event event) {
@@ -28,7 +48,7 @@ public class Controller {
 
         fxGameStatus.addStep();
 
-        FXPsvm.title.set("Ходит " + fxGameStatus.getReversWhosTurn());
+        FXPsvm.title.set("'" + fxGameStatus.getReversWhosTurn()+"' turn");
 
 
         switch (Integer.parseInt(String.valueOf(event.getTarget().toString().charAt(16)))) {
@@ -65,27 +85,6 @@ public class Controller {
 
     }
 
-
-    @FXML
-    private ImageView img1;
-    @FXML
-    private ImageView img2;
-    @FXML
-    private ImageView img3;
-    @FXML
-    private ImageView img4;
-    @FXML
-    private ImageView img5;
-    @FXML
-    private ImageView img6;
-    @FXML
-    private ImageView img7;
-    @FXML
-    private ImageView img8;
-    @FXML
-    private ImageView img9;
-
-
     public Controller() {
         setO.add(new Image("mainapp/view/imjes/o/1.jpg"));
         setO.add(new Image("mainapp/view/imjes/o/2.jpg"));
@@ -105,35 +104,36 @@ public class Controller {
     }
 
 
-    private void play(int event) {
+    private void play(int target) {
 
-        if (getImje(event) != null) {
+        if (getImje(target) != null) {
 
             System.err.println("For Aiur!");
 
             fxGameStatus.backStep();
 
-            FXPsvm.title.set("Ходит " + fxGameStatus.getWhosTurn());
+            FXPsvm.title.set("'" + fxGameStatus.getWhosTurn()+"'" + " turn!");
 
         } else {
 
 
-            game = fxGameStatus.move(game, fxGameStatus, event);
+            game = fxGameStatus.move(game, fxGameStatus, target);
 
-            setImjes(fxGameStatus, event);
+            setImjes(fxGameStatus, target);
 
             switch (fxGameStatus.isEnd(game, fxGameStatus)) {
 
-                case 1: //win
-                    System.out.print(fxGameStatus.getWhosTurn());
-                    System.out.println(" победил, gg wp!");
 
+
+                case 1:
+                    fxPsvm.andWinnerIs(fxGameStatus.getWhosTurn());
+                    System.exit(1);
                     break;
 
 
-                case 2: //draw
-
-
+                case 2:
+                    fxPsvm.draw();
+                    System.exit(1);
                     break;
 
             }
@@ -143,9 +143,9 @@ public class Controller {
     }
 
 
-    public class FxGameStatus extends GameStatus {
+    private class FxGameStatus extends GameStatus {
 
-        public Field move(Field game, GameStatus gameStatus, int event) {
+        private Field move(Field game, GameStatus gameStatus, int event) {
 
             if (this.getWhosTurn() == 'X') {
 
@@ -169,37 +169,37 @@ public class Controller {
 
         switch (event) {
             case 1:
-                img1.setImage(choiseFigure(status));
+                img1.setImage(randPics(status));
                 break;
             case 2:
-                img2.setImage(choiseFigure(status));
+                img2.setImage(randPics(status));
                 break;
             case 3:
-                img3.setImage(choiseFigure(status));
+                img3.setImage(randPics(status));
                 break;
             case 4:
-                img4.setImage(choiseFigure(status));
+                img4.setImage(randPics(status));
                 break;
             case 5:
-                img5.setImage(choiseFigure(status));
+                img5.setImage(randPics(status));
                 break;
             case 6:
-                img6.setImage(choiseFigure(status));
+                img6.setImage(randPics(status));
                 break;
             case 7:
-                img7.setImage(choiseFigure(status));
+                img7.setImage(randPics(status));
                 break;
             case 8:
-                img8.setImage(choiseFigure(status));
+                img8.setImage(randPics(status));
                 break;
             case 9:
-                img9.setImage(choiseFigure(status));
+                img9.setImage(randPics(status));
 
         }
 
     }
 
-    public Image getImje(int event){
+    private Image getImje(int event){
 
         switch (event)
         {
@@ -216,13 +216,17 @@ public class Controller {
         return null;
     }
 
-    private Image choiseFigure(FxGameStatus gameStatus) {
+    private Image randPics(FxGameStatus gameStatus) {
 
         if (gameStatus.getWhosTurn() == 'X') {
             return setX.get(rand());
         } else {
             return setO.get(rand());
         }
+    }
+
+    public void setFxPsvm(FXPsvm fxPsvm){
+        this.fxPsvm = fxPsvm;
     }
 }
 

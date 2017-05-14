@@ -5,9 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import mainapp.view.Controller;
 
 import java.io.IOException;
 
@@ -15,17 +16,7 @@ public class FXPsvm extends Application {
 
 
     private AnchorPane gridRoot;
-    private GridPane gridRootBack;
     private Stage primaryStage;
-    private StringProperty field1 = new SimpleStringProperty("");
-    private StringProperty field2 = new SimpleStringProperty("");
-    private StringProperty field3 = new SimpleStringProperty("");
-    private StringProperty field4 = new SimpleStringProperty("");
-    private StringProperty field5 = new SimpleStringProperty("");
-    private StringProperty field6 = new SimpleStringProperty("");
-    private StringProperty field7 = new SimpleStringProperty("");
-    private StringProperty field8 = new SimpleStringProperty("");
-    private StringProperty field9 = new SimpleStringProperty("");
     public static StringProperty title = new SimpleStringProperty("XoXo Gaming");
 
 
@@ -47,6 +38,11 @@ public class FXPsvm extends Application {
             loader.setLocation(FXPsvm.class.getResource("view/SceneBuilder.fxml"));
             gridRoot = loader.load();
             Scene scene = new Scene(gridRoot);
+            Controller conroller = loader.getController();
+            conroller.setFxPsvm(this);
+//            Line l = new Line(13,1,443,33);
+//            gridRoot.getChildren().add(l);
+
             primaryStage.setScene(scene);
             primaryStage.show();
 
@@ -55,6 +51,22 @@ public class FXPsvm extends Application {
             e.printStackTrace();
         }
     }
+
+    public void andWinnerIs(char who){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Gg Wp! ");
+        alert.setHeaderText("");
+        alert.setContentText("'"+ who+"' have won this game! Nice!");
+        alert.showAndWait();
+    }
+    public void draw(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Draw.");
+        alert.setHeaderText("");
+        alert.setContentText("Draw, Draw, Draw!");
+        alert.showAndWait();
+    }
+
 
     public static void main(String[] args) {
         launch(args);

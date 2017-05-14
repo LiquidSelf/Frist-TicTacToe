@@ -50,9 +50,9 @@ public class GameStatus {
 
         status = 0;
 
-        gameStatus.winOrLose(game);
-
         gameStatus.isDraw(game);
+
+        gameStatus.winOrLose(game);
 
         return status;
 

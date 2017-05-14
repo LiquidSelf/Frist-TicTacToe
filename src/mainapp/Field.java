@@ -4,7 +4,7 @@ package mainapp;
 
 public class Field {
 
-    public char field1;
+    private char field1;
     private char field2;
     private char field3;
     private char field4;
