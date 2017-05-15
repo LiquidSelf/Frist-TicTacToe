@@ -54,7 +54,7 @@ public class FXPsvm extends Application {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Gg Wp! ");
         alert.setHeaderText("");
-        alert.setContentText("'"+ who+"' have won this game! Nice!");
+        alert.setContentText("'"+ who+"' has won the game! Nice!");
         alert.showAndWait();
     }
     public void draw(){
