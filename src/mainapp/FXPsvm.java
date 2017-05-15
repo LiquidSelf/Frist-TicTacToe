@@ -40,10 +40,8 @@ public class FXPsvm extends Application {
             Scene scene = new Scene(gridRoot);
             Controller conroller = loader.getController();
             conroller.setFxPsvm(this);
-//            Line l = new Line(13,1,443,33);
-//            gridRoot.getChildren().add(l);
-
             primaryStage.setScene(scene);
+
             primaryStage.show();
 
         } catch (IOException e) {
@@ -67,9 +65,12 @@ public class FXPsvm extends Application {
         alert.showAndWait();
     }
 
-
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public AnchorPane getGridRoot(){
+        return gridRoot;
     }
 
 }

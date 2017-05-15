@@ -4,6 +4,9 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeType;
 import mainapp.FXPsvm;
 import mainapp.Field;
 import mainapp.Figures;
@@ -48,7 +51,7 @@ public class Controller {
 
         fxGameStatus.addStep();
 
-        FXPsvm.title.set("'" + fxGameStatus.getReversWhosTurn()+"' turn");
+        FXPsvm.title.set("'" + fxGameStatus.getReversWhosTurn() + "' turn");
 
 
         switch (Integer.parseInt(String.valueOf(event.getTarget().toString().charAt(16)))) {
@@ -112,7 +115,7 @@ public class Controller {
 
             fxGameStatus.backStep();
 
-            FXPsvm.title.set("'" + fxGameStatus.getWhosTurn()+"'" + " turn!");
+            FXPsvm.title.set("'" + fxGameStatus.getWhosTurn() + "'" + " turn!");
 
         } else {
 
@@ -124,8 +127,8 @@ public class Controller {
             switch (fxGameStatus.isEnd(game, fxGameStatus)) {
 
 
-
                 case 1:
+                    addRedline(fxGameStatus.getVec());
                     fxPsvm.andWinnerIs(fxGameStatus.getWhosTurn());
                     System.exit(1);
                     break;
@@ -199,19 +202,27 @@ public class Controller {
 
     }
 
-    private Image getImje(int event){
+    private Image getImje(int event) {
 
-        switch (event)
-        {
-            case 1: return img1.getImage();
-            case 2: return img2.getImage();
-            case 3: return img3.getImage();
-            case 4: return img4.getImage();
-            case 5: return img5.getImage();
-            case 6: return img6.getImage();
-            case 7: return img7.getImage();
-            case 8: return img8.getImage();
-            case 9: return img9.getImage();
+        switch (event) {
+            case 1:
+                return img1.getImage();
+            case 2:
+                return img2.getImage();
+            case 3:
+                return img3.getImage();
+            case 4:
+                return img4.getImage();
+            case 5:
+                return img5.getImage();
+            case 6:
+                return img6.getImage();
+            case 7:
+                return img7.getImage();
+            case 8:
+                return img8.getImage();
+            case 9:
+                return img9.getImage();
         }
         return null;
     }
@@ -225,7 +236,75 @@ public class Controller {
         }
     }
 
-    public void setFxPsvm(FXPsvm fxPsvm){
+    private void addRedline(int vec) {
+
+        double windowY = img1.getParent().getParent().getParent().getLayoutBounds().getHeight();
+        double windowX = img1.getParent().getParent().getParent().getLayoutBounds().getWidth();
+        double halfButtonY = windowY / 6;
+        double halfButtonX = windowX / 6;
+        double buttonY = windowY / 3;
+        double buttonX = windowX / 3;
+
+
+        Line redLine = new Line();
+        redLine.setStroke(Color.rgb(255, 16, 10, 0.6078));
+        redLine.setStrokeType(StrokeType.OUTSIDE);
+        redLine.setStrokeWidth(7);
+        switch (vec) {
+            case 13:
+                redLine.setStartX(0);
+                redLine.setStartY(halfButtonY);
+                redLine.setEndX(windowX);
+                redLine.setEndY(halfButtonY);
+                break;
+            case 17:
+                redLine.setStartX(halfButtonX);
+                redLine.setStartY(0);
+                redLine.setEndX(halfButtonX);
+                redLine.setEndY(windowY);
+                break;
+            case 19:
+                redLine.setStartX(0);
+                redLine.setStartY(0);
+                redLine.setEndX(buttonX * 3);
+                redLine.setEndY(buttonY * 3);
+                break;
+            case 28:
+                redLine.setStartX(windowX / 2);
+                redLine.setStartY(0);
+                redLine.setEndX(windowX / 2);
+                redLine.setEndY(windowY);
+                break;
+            case 39:
+                redLine.setStartX(windowX - halfButtonX);
+                redLine.setStartY(0);
+                redLine.setEndX(windowX - halfButtonX);
+                redLine.setEndY(windowY);
+                break;
+            case 37:
+                redLine.setStartX(windowX);
+                redLine.setStartY(0);
+                redLine.setEndX(0);
+                redLine.setEndY(windowY);
+                break;
+            case 46:
+                redLine.setStartX(0);
+                redLine.setStartY(windowY / 2);
+                redLine.setEndX(windowX);
+                redLine.setEndY(windowY / 2);
+                break;
+            case 79:
+                redLine.setStartX(0);
+                redLine.setStartY(windowY - halfButtonY);
+                redLine.setEndX(windowX);
+                redLine.setEndY(windowY - halfButtonY);
+                break;
+
+        }
+        fxPsvm.getGridRoot().getChildren().add(redLine);
+    }
+
+    public void setFxPsvm(FXPsvm fxPsvm) {
         this.fxPsvm = fxPsvm;
     }
 }

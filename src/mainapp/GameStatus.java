@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class GameStatus {
 
+    private int vec = 0;
+
     private int status;
 
     private char whosturn = 'O';
@@ -62,23 +64,23 @@ public class GameStatus {
         boolean q = false;
 
         if (game.getField1() == game.getField2() && game.getField2() == game.getField3() && game.getField3() != ' ') {
-            q = true;
+            q = true; vec = 13;
         } else if (game.getField1() == game.getField4() && game.getField4() == game.getField7() && game.getField7() != ' ') {
-            q = true;
+            q = true; vec = 17;
         } else if (game.getField1() == game.getField5() && game.getField5() == game.getField9() && game.getField9() != ' ') {
-            q = true;
+            q = true; vec = 19;
         } else if (game.getField2() == game.getField5() && game.getField5() == game.getField8() && game.getField8() != ' ') {
-            q = true;
+            q = true; vec = 28;
         } else if (game.getField3() == game.getField6() && game.getField6() == game.getField9() && game.getField9() != ' ') {
-            q = true;
+            q = true; vec = 39;
         } else if (game.getField3() == game.getField5() && game.getField5() == game.getField7() && game.getField7() != ' ') {
-            q = true;
+            q = true; vec = 37;
         } else if (game.getField4() == game.getField5() && game.getField5() == game.getField6() && game.getField6() != ' ') {
-            q = true;
+            q = true; vec = 46;
         } else if (game.getField7() == game.getField8() && game.getField8() == game.getField9() && game.getField9() != ' ') {
-            q = true;
+            q = true; vec = 79;
         } else if (game.getField7() == game.getField5() && game.getField5() == game.getField3() && game.getField3() != ' ') {
-            q = true;
+            q = true; vec = 37;
         }
 
         if (q) {
@@ -153,6 +155,7 @@ public class GameStatus {
     return game;
 
     }
+    public int getVec(){return vec;}
 
 
         }
