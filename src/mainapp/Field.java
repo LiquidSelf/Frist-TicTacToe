@@ -18,7 +18,7 @@ public class Field {
         return field1;
     }
 
-    void setField1(char field1) {
+    public void setField1(char field1) {
         this.field1 = field1;
     }
 
@@ -26,7 +26,7 @@ public class Field {
         return field2;
     }
 
-    void setField2(char field2) {
+    public void setField2(char field2) {
         this.field2 = field2;
     }
 
@@ -34,7 +34,7 @@ public class Field {
         return field3;
     }
 
-    void setField3(char field3) {
+    public void setField3(char field3) {
         this.field3 = field3;
     }
 
@@ -42,7 +42,7 @@ public class Field {
         return field4;
     }
 
-    void setField4(char field4) {
+    public void setField4(char field4) {
         this.field4 = field4;
     }
 
@@ -50,7 +50,7 @@ public class Field {
         return field5;
     }
 
-    void setField5(char field5) {
+    public void setField5(char field5) {
         this.field5 = field5;
     }
 
@@ -58,7 +58,7 @@ public class Field {
         return field6;
     }
 
-    void setField6(char field6) {
+    public void setField6(char field6) {
         this.field6 = field6;
     }
 
@@ -66,7 +66,7 @@ public class Field {
         return field7;
     }
 
-    void setField7(char field7) {
+    public void setField7(char field7) {
         this.field7 = field7;
     }
 
@@ -74,7 +74,7 @@ public class Field {
         return field8;
     }
 
-    void setField8(char field8) {
+    public void setField8(char field8) {
         this.field8 = field8;
     }
 
@@ -82,11 +82,11 @@ public class Field {
         return field9;
     }
 
-    void setField9(char field9) {
+    public void setField9(char field9) {
         this.field9 = field9;
     }
 
-    final void showField() {
+    public void  showField() {
         char s1 = getField1();
         char s2 = getField2();
         char s3 = getField3();

@@ -7,10 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeType;
-import mainapp.FXPsvm;
-import mainapp.Field;
-import mainapp.Figures;
-import mainapp.GameStatus;
+import mainapp.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +21,7 @@ public class Controller {
     private List<Image> setO = new LinkedList<Image>();
     private Random r = new Random(System.currentTimeMillis());
     private FXPsvm fxPsvm;
+    private SqlPsvm sqlPsvm;
 
     @FXML
     private ImageView img1;
@@ -52,7 +50,6 @@ public class Controller {
         fxGameStatus.addStep();
 
         FXPsvm.title.set("'" + fxGameStatus.getReversWhosTurn() + "' turn");
-
 
         switch (Integer.parseInt(String.valueOf(event.getTarget().toString().charAt(16)))) {
 
@@ -306,6 +303,9 @@ public class Controller {
 
     public void setFxPsvm(FXPsvm fxPsvm) {
         this.fxPsvm = fxPsvm;
+    }
+    public void setSqlPsvm(SqlPsvm sqlPsvm) {
+        this.sqlPsvm = sqlPsvm;
     }
 }
 

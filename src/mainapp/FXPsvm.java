@@ -20,6 +20,7 @@ public class FXPsvm extends Application {
     public static StringProperty title = new SimpleStringProperty("XoXo Gaming");
 
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;

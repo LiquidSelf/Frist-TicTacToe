@@ -9,6 +9,7 @@ final class ConsolePsvm {
 
    static void play() {
 
+
         Field game = Field.setEmptyField(new Field());
         GameStatus gameStatus = new GameStatus();
 

@@ -158,5 +158,10 @@ public class GameStatus {
     public int getVec(){return vec;}
 
 
-        }
+public void setWhosturn(char c){
+        this.whosturn = c;
+}
+}
+
+
 
