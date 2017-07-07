@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="XoXo.jnlp">
+  <information>
+    <title>qwe</title>
+    <vendor>Unknown</vendor>
+    <description>XoXo</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="XoXo.jar" size="92994" download="eager" />
+    <jar href="sqljdbc42.jar" size="891490" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="mainapp.SqlPsvm"  name="XoXo" />
+  <update check="background"/>
+</jnlp>
