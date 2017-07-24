@@ -1,5 +1,9 @@
 package mainapp;
 
+import mainapp.model.Field;
+import mainapp.model.GameStatus;
+import mainapp.view.Guide;
+
 final class ConsolePsvm {
 
     public static void main(final String[] args) {

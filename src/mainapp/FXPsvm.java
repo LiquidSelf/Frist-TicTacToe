@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import mainapp.view.Controller;
+import mainapp.controller.Controller;
 
 import java.io.IOException;
 
