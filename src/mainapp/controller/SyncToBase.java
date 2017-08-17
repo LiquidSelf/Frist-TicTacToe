@@ -6,43 +6,41 @@ import mainapp.SqlPsvm;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.concurrent.ExecutionException;
 
 public class SyncToBase {
 
-
     private SqlController sqlController;
     private SqlPsvm sqlPsvm;
+    private final static String url = "jdbc:sqlserver://mssql2.gear.host";
+    private final static String name = "luldb";
+    private final static String pass = "Cd0zjV6__g65";
 
-    final private String url = "jdbc:sqlserver://mssql2.gear.host";
-    final private String name = "luldb";
-    final private String pass = "Cd0zjV6__g65";
-
-    public SyncToBase(){
+    public SyncToBase(SqlPsvm sqlPsvm, SqlController sqlController) throws ExecutionException, InterruptedException {
+        this.sqlPsvm = sqlPsvm;
+        this.sqlController = sqlController;
         loadJdbc();
+        startSync();
     }
 
-    public void startSync() {
 
+    public void startSync() throws ExecutionException, InterruptedException {
         Thread thread = new Thread(task);
         thread.setDaemon(false);
         thread.start();
+
     }
 
 
-    Task<Void> task = new Task<Void>() {
+    Task<Integer> task = new Task<Integer>() {
 
 
         @Override
-        protected Void call() throws Exception {
-
-
+        protected Integer call() throws Exception {
             try (Connection con = DriverManager.getConnection(url, name, pass)) {
                 SqlPsvm.connect = con;
                 sqlController.sqlSync();
                 System.out.println("sync started.");
-
 
                 while (true) {
 
@@ -52,6 +50,7 @@ public class SyncToBase {
 
                     Platform.runLater(() -> {
                         try {
+                            sqlPsvm.setTitle(String.valueOf(sqlController.getWhosturn()));
                             sqlController.isEnd();
 
                         } catch (Exception e) {
@@ -59,30 +58,25 @@ public class SyncToBase {
                         }
                     });
 
-                    Thread.sleep(1000);
+                    Thread.sleep(800);
+
                     if (SqlController.isend) {
+
                         Thread.sleep(30000);
                     }
 
-                    if (!sqlPsvm.getPrimaryStage().isShowing()){
+                    if (!sqlPsvm.getPrimaryStage().isShowing()) {
 
-                        try (Statement st = SqlPsvm.connect.createStatement()) {
-                            st.executeUpdate("UPDATE xoxo SET figure = ' '");
-                            st.close();
-                        }
-                        catch (SQLException ex){ex.printStackTrace();}
+                        SqlPsvm.resetFields();
+                        System.out.println("thank you and good luck!");
+                        System.exit(123);
+                    }
 
-                        finally {
-                            if(SqlPsvm.connect!=null) {SqlPsvm.connect.close();}
-                            System.out.println("connect closed in sync!");
-                            System.exit(4);
-                        }
-                    }
-                    }
+                }
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.out.println("sync stopped!");
+                System.out.println("sync stopped with exception!");
             }
 
             return null;
@@ -90,29 +84,19 @@ public class SyncToBase {
         }
     };
 
-        public void setSqlController(SqlController sqlController) {
-            this.sqlController = sqlController;
+
+    private void loadJdbc() {
+
+        try {
+
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
         }
 
-        private void loadJdbc () {
-
-            try {
-
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
-
-        }
-
-    public void setSqlPsvm(SqlPsvm sqlPsvm) {
-        this.sqlPsvm = sqlPsvm;
     }
 }
-
-
-
 
 
 

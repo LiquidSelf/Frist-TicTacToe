@@ -124,10 +124,7 @@ public class Controller {
 
             fxGameStatus.backStep();
 
-            FXPsvm.title.set("'" + fxGameStatus.getWhosTurn() + "'" + " turn!");
-
         } else {
-
 
             game = fxGameStatus.move(game, fxGameStatus, target);
 
@@ -258,9 +255,9 @@ public class Controller {
 
 
         Line redLine = new Line();
-        redLine.setStroke(Color.rgb(255, 16, 10, 0.6078));
+        redLine.setStroke(Color.rgb(255, 16, 10, 0.6588));
         redLine.setStrokeType(StrokeType.OUTSIDE);
-        redLine.setStrokeWidth(7);
+        redLine.setStrokeWidth(4);
         switch (vec) {
             case 13:
                 redLine.setStartX(0);

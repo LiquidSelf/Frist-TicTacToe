@@ -4,9 +4,9 @@ import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import mainapp.controller.SqlController;
@@ -14,17 +14,15 @@ import mainapp.controller.SyncToBase;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SqlPsvm extends Application {
-
     private AnchorPane gridRoot;
     private Stage primaryStage;
-    public static volatile Connection connect;
-    public static StringProperty title = new SimpleStringProperty("XoXo Gaming");
+    public static Connection connect;
+    public StringProperty title = new SimpleStringProperty("XoXo Gaming");
     private SqlController sqlController;
-    Scene scene;
-    ImageView pause;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -45,16 +43,17 @@ public class SqlPsvm extends Application {
             loader.setLocation(SqlPsvm.class.getResource("view/SqlSceneBuilder.fxml"));
             gridRoot = loader.load();
             Scene scene = new Scene(gridRoot);
-            this.scene = scene;
             SqlController sqlController = loader.getController();
             this.sqlController = sqlController;
             createSync();
             sqlController.setSqlPsvm(this);
             primaryStage.setScene(scene);
             primaryStage.show();
-
-
-
+            scene.setCursor(Cursor.WAIT);
+            while (connect == null) {
+                Thread.sleep(100);
+            }
+            scene.setCursor(Cursor.HAND);
 
 
         } catch (IOException e) {
@@ -76,16 +75,10 @@ public class SqlPsvm extends Application {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Gg Wp! ");
         alert.setHeaderText("");
-        alert.setContentText("'" + who + "' has won the game! Nice!");
+        alert.setContentText("'" + who + "' - player has won the game! Nice!");
         alert.showAndWait();
         Thread.sleep(1000);
-        try (Statement st = connect.createStatement()) {
-
-            st.executeUpdate("UPDATE xoxo SET figure = ' '");
-        }finally {
-            if(connect!=null) {connect.close();
-                System.out.println("connect closed!");}
-        }
+        SqlPsvm.resetFields();
     }
 
     public void draw() throws Exception {
@@ -95,14 +88,8 @@ public class SqlPsvm extends Application {
         alert.setContentText("Draw, Draw, iDraw!");
         alert.showAndWait();
         Thread.sleep(1000);
-        try (Statement st = connect.createStatement()){
+        SqlPsvm.resetFields();
 
-            st.executeUpdate("UPDATE xoxo SET figure = ' '");
-            st.close();
-    }finally {
-        if(connect!=null) {connect.close();
-        System.out.println("connect closed!");}
-    }
     }
 
     public static void main(String[] args) {
@@ -116,24 +103,40 @@ public class SqlPsvm extends Application {
     private void createSync() throws Exception {
 
 
-
         try {
 
-            SyncToBase stb = new SyncToBase();
-            stb.setSqlPsvm(this);
-            stb.setSqlController(sqlController);
-            stb.startSync();
+            new SyncToBase(this, sqlController);
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public Stage getPrimaryStage() {
-        return primaryStage;
+    public static void resetFields() {
+        try (Statement st = connect.createStatement()) {
+            st.executeUpdate("UPDATE xoxo SET figure = ' '");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (connect != null) {
+                try {
+                    connect.close();
+                    System.out.println("fields reseted!");
+                } catch (SQLException sqlEx) {
+                    sqlEx.printStackTrace();
+                }
+            }
+
+        }
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public Stage getPrimaryStage() {
+        return primaryStage;
+
+    }
+
+    public void setTitle(String title){
+        this.title.setValue("It's '"+title+"' turn.");
     }
 }
+

@@ -24,7 +24,7 @@ public class SqlController extends Controller {
     private List<Image> setO = new LinkedList<Image>();
     private Random r = new Random(System.currentTimeMillis());
     private SqlPsvm sqlPsvm;
-    static char turn;
+    public static char turn;
     public static boolean isend = false;
 
 
@@ -78,7 +78,7 @@ public class SqlController extends Controller {
 
 
     @Override
-    public void play(int target)throws SQLException {
+    public void play(int target) throws SQLException {
 
         if (getImje(target) != null) {
 
@@ -174,7 +174,7 @@ public class SqlController extends Controller {
 
                 img9.setImage(randPics(figure));
                 update(figure, event);
-
+                System.out.println(figure);
                 break;
         }
 
@@ -216,16 +216,16 @@ public class SqlController extends Controller {
         try (Statement statement = SqlPsvm.connect.createStatement(); ResultSet rs = statement.executeQuery("SELECT * FROM xoxo")) {
 
 
-            for (int i = 1; rs.next(); i++) {
+            for (int i = 1; rs.next()|| i<11; i++) {
 
-                char figure = ' ';
+                char figure = rs.getString(2).charAt(0);
 
-                figure = rs.getString(2).charAt(0);
+                if (i == 10 && figure != ' ') {
+                    fxGameStatus.setWhosturn(figure);
+                }
 
                 if (figure == 'X' || figure == 'O') {
-
                     setFieldAndImg(i, figure);
-
                 }
 
 
@@ -291,18 +291,13 @@ public class SqlController extends Controller {
                 }
                 break;
 
+
         }
-
-    }
-
-    public static char getTurn() {
-        return turn;
     }
 
     private char whosTurn() throws SQLException {
 
         try (Statement st = SqlPsvm.connect.createStatement(); ResultSet rs = st.executeQuery("SELECT * from xoxo where field = 10")) {
-
             rs.next();
             char t;
             t = rs.getString(2).charAt(0);
@@ -312,7 +307,6 @@ public class SqlController extends Controller {
             } else turn = 'O';
 
             fxGameStatus.setWhosturn(turn);
-
 
             return turn;
         }
@@ -324,27 +318,16 @@ public class SqlController extends Controller {
 
 
         switch (key) {
-
-
             case 1:
                 isend = true;
                 addRedline(fxGameStatus.getVec(), sqlPsvm.getGridRoot().getChildren());
                 sqlPsvm.andWinnerIs(fxGameStatus.getWhosTurn());
-                if (sqlPsvm.connect != null) {
-                    SqlPsvm.connect.close();
-                    System.out.println("connect closed in SqlController");
-                }
                 System.exit(1);
                 break;
-
 
             case 2:
                 isend = true;
                 sqlPsvm.draw();
-                if (sqlPsvm.connect != null) {
-                    SqlPsvm.connect.close();
-                    System.out.println("connect closed in SqlController");
-                }
                 System.exit(1);
                 break;
 
@@ -353,6 +336,10 @@ public class SqlController extends Controller {
     }
 
 
+    public char getWhosturn() {
+        return fxGameStatus.getReversWhosTurn();
+
+    }
 
 
 }
