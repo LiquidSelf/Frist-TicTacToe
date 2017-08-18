@@ -8,6 +8,7 @@ import mainapp.model.Field;
 import mainapp.model.Figures;
 import mainapp.model.GameStatus;
 import mainapp.SqlPsvm;
+import mainapp.controller.Refs.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -124,53 +125,53 @@ public class SqlController extends Controller {
 
 
         switch (event) {
-            case 1:
+            case Click.FIELD_ONE:
 
                 img1.setImage(randPics(figure));
                 update(figure, event);
                 break;
-            case 2:
+            case Click.FIELD_TWO:
 
                 img2.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 3:
+            case Click.FIELD_THREE:
                 img3.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 4:
+            case Click.FIELD_FOUR:
 
                 img4.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 5:
+            case Click.FIELD_FIVE:
 
                 img5.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 6:
+            case Click.FIELD_SIX:
 
                 img6.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 7:
+            case Click.FIELD_SEVEN:
 
                 img7.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 8:
+            case Click.FIELD_EIGHT:
 
                 img8.setImage(randPics(figure));
                 update(figure, event);
 
                 break;
-            case 9:
+            case Click.FIELD_NINE:
 
                 img9.setImage(randPics(figure));
                 update(figure, event);
@@ -318,14 +319,15 @@ public class SqlController extends Controller {
 
 
         switch (key) {
-            case 1:
+
+            case State.WIN:
                 isend = true;
                 addRedline(fxGameStatus.getVec(), sqlPsvm.getGridRoot().getChildren());
                 sqlPsvm.andWinnerIs(fxGameStatus.getWhosTurn());
                 System.exit(1);
                 break;
 
-            case 2:
+            case State.DRAW:
                 isend = true;
                 sqlPsvm.draw();
                 System.exit(1);
